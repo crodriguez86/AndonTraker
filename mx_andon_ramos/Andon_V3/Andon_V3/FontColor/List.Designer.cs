@@ -1,0 +1,142 @@
+﻿namespace Andon_V3.FontColor
+{
+    partial class List
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.grdData = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.idText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.update = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.delete = new System.Windows.Forms.DataGridViewLinkColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Font color";
+            // 
+            // grdData
+            // 
+            this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idText,
+            this.name,
+            this.update,
+            this.delete});
+            this.grdData.Location = new System.Drawing.Point(28, 78);
+            this.grdData.Name = "grdData";
+            this.grdData.Size = new System.Drawing.Size(407, 338);
+            this.grdData.TabIndex = 1;
+            this.grdData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLines_CellContentClick);
+            this.grdData.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdLines_DataBindingComplete);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Teal;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(360, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 44);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "New";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // idText
+            // 
+            this.idText.DataPropertyName = "idText";
+            this.idText.HeaderText = "ID";
+            this.idText.Name = "idText";
+            this.idText.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idText.Width = 40;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 180;
+            // 
+            // update
+            // 
+            this.update.HeaderText = "Update";
+            this.update.Name = "update";
+            this.update.ReadOnly = true;
+            this.update.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.update.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.update.Text = "Update";
+            this.update.Width = 60;
+            // 
+            // delete
+            // 
+            this.delete.DataPropertyName = "Update";
+            this.delete.HeaderText = "Delete";
+            this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
+            this.delete.Text = "Delete";
+            this.delete.Width = 60;
+            // 
+            // List
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(467, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.grdData);
+            this.Controls.Add(this.label1);
+            this.Name = "List";
+            this.Text = "List";
+            this.Load += new System.EventHandler(this.List_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView grdData;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewLinkColumn update;
+        private System.Windows.Forms.DataGridViewLinkColumn delete;
+    }
+}

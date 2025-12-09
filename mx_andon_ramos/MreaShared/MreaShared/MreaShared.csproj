@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EAF3E484-7C5A-4F91-947D-770074BC925E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MreaShared</RootNamespace>
+    <AssemblyName>MreaShared</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\AndonBLL.cs" />
+    <Compile Include="BLL\AndonErrorLogBLL.cs" />
+    <Compile Include="BLL\AndonHistoryBLL.cs" />
+    <Compile Include="BLL\AndonPanelButtonBLL.cs" />
+    <Compile Include="BLL\AndonPinsBLL.cs" />
+    <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="BLL\AndonPanelViewBLL.cs" />
+    <Compile Include="BLL\AndonPanelGroupBLL.cs" />
+    <Compile Include="BLL\EmailByLevelBLL.cs" />
+    <Compile Include="BLL\EmailByTypeBLL.cs" />
+    <Compile Include="BLL\ZoneBLL.cs" />
+    <Compile Include="BLL\FontsizeBLL.cs" />
+    <Compile Include="BLL\ColorTextBLL.cs" />
+    <Compile Include="BLL\ColorBgBLL.cs" />
+    <Compile Include="BLL\AndonPlcBLL.cs" />
+    <Compile Include="BLL\AndonTypeBLL.cs" />
+    <Compile Include="BLL\AndonValueBLL.cs" />
+    <Compile Include="BLL\CorreoBLL.cs" />
+    <Compile Include="BLL\DBConnectionBLL.cs" />
+    <Compile Include="BLL\EnumBLL.cs" />
+    <Compile Include="BLL\MreaLineBLL.cs" />
+    <Compile Include="BLL\MreaMailBLL.cs" />
+    <Compile Include="DAL\AndonDAL.cs" />
+    <Compile Include="DAL\AndonPinsDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="DAL\AndonErrorLogDAL.cs" />
+    <Compile Include="DAL\AndonHistoryDAL.cs" />
+    <Compile Include="DAL\AndonPanelButtonDAL.cs" />
+    <Compile Include="DAL\AndonPanelGroupDAL.cs" />
+    <Compile Include="DAL\AndonPanelViewDAL.cs" />
+    <Compile Include="DAL\EmailByLevelDAL.cs" />
+    <Compile Include="DAL\EmailByTypeDAL.cs" />
+    <Compile Include="DAL\ZoneDAL.cs" />
+    <Compile Include="DAL\FonsizeDAL.cs" />
+    <Compile Include="DAL\ColorTextDAL.cs" />
+    <Compile Include="DAL\ColorBgDAL.cs" />
+    <Compile Include="DAL\AndonPlcDAL.cs" />
+    <Compile Include="DAL\AndonTypeDAL.cs" />
+    <Compile Include="DAL\AndonValueDAL.cs" />
+    <Compile Include="DAL\CorreoDAL.cs" />
+    <Compile Include="DAL\DBConnectionDAL.cs" />
+    <Compile Include="DAL\MreaLineDAL.cs" />
+    <Compile Include="HandleException.cs" />
+    <Compile Include="Objects\Andon.cs" />
+    <Compile Include="Objects\AndonApp.cs" />
+    <Compile Include="Objects\AndonConfig.cs" />
+    <Compile Include="Objects\AndonErrorLog.cs" />
+    <Compile Include="Objects\AndonFontsize.cs" />
+    <Compile Include="Objects\AndonHistory.cs" />
+    <Compile Include="Objects\AndonPanelButton.cs" />
+    <Compile Include="Objects\AndonPins.cs" />
+    <Compile Include="Objects\Users.cs" />
+    <Compile Include="Objects\AndonPanelGroup.cs" />
+    <Compile Include="Objects\AndonPanelView.cs" />
+    <Compile Include="Objects\EmailByLevel.cs" />
+    <Compile Include="Objects\EmailByType.cs" />
+    <Compile Include="Objects\Zone.cs" />
+    <Compile Include="Objects\ColorBg.cs" />
+    <Compile Include="Objects\ColorText.cs" />
+    <Compile Include="Objects\MreaLine.cs" />
+    <Compile Include="Objects\AndonPlc.cs" />
+    <Compile Include="Objects\AndonType.cs" />
+    <Compile Include="Objects\AndonValues.cs" />
+    <Compile Include="Objects\Correos.cs" />
+    <Compile Include="Objects\Enumerations.cs" />
+    <Compile Include="Objects\ScreenDevice.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

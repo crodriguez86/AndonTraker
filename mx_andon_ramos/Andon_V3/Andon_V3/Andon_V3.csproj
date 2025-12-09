@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A243336-FE30-4447-ACAF-D83A99D67051}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Andon_V3</RootNamespace>
+    <AssemblyName>Andon_V3</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>G:\MXSHARED\IT\Andon\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\10.241.1.30\MXSHARED\IT\Andon\</InstallUrl>
+    <UpdateUrl>\\10.241.1.30\AndonDeploy\</UpdateUrl>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>88</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A1AB8681C302C33C3DFA663C26FCF1FD660A50BB</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Andon_V3_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>capture_dSB_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Andon_V3.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MreaShared">
+      <HintPath>..\..\MreaShared\MreaShared\bin\Debug\MreaShared.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AndonConfig2\StatusWebView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AndonConfig2\StatusWebView.Designer.cs">
+      <DependentUpon>StatusWebView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackColor\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackColor\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackColor\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackColor\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuration.Designer.cs">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeyPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyPad.Designer.cs">
+      <DependentUpon>KeyPad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MreaMessage.cs" />
+    <Compile Include="TblAndonError\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblAndonError\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblAndonError\ListLogFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblAndonError\ListLogFiles.Designer.cs">
+      <DependentUpon>ListLogFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblAndonError\ViewLogFileDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblAndonError\ViewLogFileDetails.Designer.cs">
+      <DependentUpon>ViewLogFileDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblAndonError\ViewDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblAndonError\ViewDetails.Designer.cs">
+      <DependentUpon>ViewDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblHistory\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblHistory\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblPanelButton\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblPanelButton\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblPanelButton\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblPanelButton\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblPanelView\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblPanelView\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblPanelView\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblPanelView\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblPanelGroup\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblPanelGroup\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblPanelGroup\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblPanelGroup\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fonsize\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fonsize\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fonsize\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fonsize\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FontColor\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FontColor\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FontColor\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FontColor\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lines\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lines\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lines\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lines\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monitor.Designer.cs">
+      <DependentUpon>Monitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewMessage.Designer.cs">
+      <DependentUpon>NewMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\ManageLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notifications\ManageLevel.Designer.cs">
+      <DependentUpon>ManageLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Manage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notifications\Manage.Designer.cs">
+      <DependentUpon>Manage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelView.Designer.cs">
+      <DependentUpon>PanelView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelGroup.Designer.cs">
+      <DependentUpon>PanelGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLCs\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLCs\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLCs\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLCs\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production.Designer.cs">
+      <DependentUpon>Production.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layout.Designer.cs">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Materials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Materials.Designer.cs">
+      <DependentUpon>Materials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartUpConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartUpConfig.Designer.cs">
+      <DependentUpon>StartUpConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AndonConfig2\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AndonConfig2\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AndonConfig2\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AndonConfig2\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuperMarket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuperMarket.Designer.cs">
+      <DependentUpon>SuperMarket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TagMonitor\Monitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagMonitor\Monitor.Designer.cs">
+      <DependentUpon>Monitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TagValues\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagValues\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TagValues\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagValues\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblUser\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblUser\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TblUser\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TblUser\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestAndon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestAndon.Designer.cs">
+      <DependentUpon>TestAndon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Emails\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Emails\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Emails\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Emails\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThreadHelperClass.cs" />
+    <Compile Include="Types\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Types\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Types\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Types\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Zones\Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zones\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Zones\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zones\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AndonConfig2\StatusWebView.resx">
+      <DependentUpon>StatusWebView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackColor\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackColor\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration.resx">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyPad.resx">
+      <DependentUpon>KeyPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblAndonError\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblAndonError\ListLogFiles.resx">
+      <DependentUpon>ListLogFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblAndonError\ViewLogFileDetails.resx">
+      <DependentUpon>ViewLogFileDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblAndonError\ViewDetails.resx">
+      <DependentUpon>ViewDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblHistory\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblPanelButton\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblPanelButton\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblPanelView\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblPanelView\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblPanelGroup\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblPanelGroup\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonsize\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonsize\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FontColor\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FontColor\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lines\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lines\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor.resx">
+      <DependentUpon>Monitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewMessage.resx">
+      <DependentUpon>NewMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifications\ManageLevel.resx">
+      <DependentUpon>ManageLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifications\Manage.resx">
+      <DependentUpon>Manage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelView.resx">
+      <DependentUpon>PanelView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelGroup.resx">
+      <DependentUpon>PanelGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLCs\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLCs\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production.resx">
+      <DependentUpon>Production.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout.resx">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Materials.resx">
+      <DependentUpon>Materials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="StartUpConfig.resx">
+      <DependentUpon>StartUpConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AndonConfig2\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AndonConfig2\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuperMarket.resx">
+      <DependentUpon>SuperMarket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagMonitor\Monitor.resx">
+      <DependentUpon>Monitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagValues\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagValues\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblUser\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TblUser\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestAndon.resx">
+      <DependentUpon>TestAndon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Emails\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Emails\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Types\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Types\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zones\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zones\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Andon_V3_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_2martinrea_logo_hi-res_final.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO MRE 2016 png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_1logo_mre_2016_png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="capture_dSB_icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
