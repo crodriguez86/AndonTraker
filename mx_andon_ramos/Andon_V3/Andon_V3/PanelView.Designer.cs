@@ -1,4 +1,4 @@
-﻿namespace Andon_V3
+namespace Andon_V3
 {
     partial class PanelView
     {
@@ -29,125 +29,113 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.btnToggleCollapse = new System.Windows.Forms.Button();
             this.lblPanelDesc = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblTimeStateRunning = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.tablePanelView = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlFooter = new System.Windows.Forms.Panel();
             this.lblStatusTower = new System.Windows.Forms.Label();
             this.lblState = new System.Windows.Forms.Label();
-            this.tablePanelView = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTimeStateRunning = new System.Windows.Forms.Label();
             this.TimerCheckButtonState = new System.Windows.Forms.Timer(this.components);
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlHeader.SuspendLayout();
+            this.pnlFooter.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlHeader
             // 
-            this.panel1.BackColor = System.Drawing.Color.Teal;
-            this.panel1.Controls.Add(this.lblPanelDesc);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(302, 91);
-            this.panel1.TabIndex = 0;
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.pnlHeader.Controls.Add(this.btnToggleCollapse);
+            this.pnlHeader.Controls.Add(this.lblPanelDesc);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(135, 32);
+            this.pnlHeader.TabIndex = 0;
+            // 
+            // btnToggleCollapse
+            // 
+            this.btnToggleCollapse.BackColor = System.Drawing.Color.White;
+            this.btnToggleCollapse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnToggleCollapse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnToggleCollapse.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnToggleCollapse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToggleCollapse.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnToggleCollapse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
+            this.btnToggleCollapse.Location = new System.Drawing.Point(0, 0);
+            this.btnToggleCollapse.Margin = new System.Windows.Forms.Padding(0);
+            this.btnToggleCollapse.Name = "btnToggleCollapse";
+            this.btnToggleCollapse.Size = new System.Drawing.Size(135, 32);
+            this.btnToggleCollapse.TabIndex = 0;
+            this.btnToggleCollapse.Text = "<";
+            this.btnToggleCollapse.UseVisualStyleBackColor = false;
+            this.btnToggleCollapse.Click += new System.EventHandler(this.btnToggleCollapse_Click);
             // 
             // lblPanelDesc
             // 
-            this.lblPanelDesc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPanelDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPanelDesc.ForeColor = System.Drawing.Color.White;
             this.lblPanelDesc.Location = new System.Drawing.Point(0, 0);
-            this.lblPanelDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPanelDesc.Name = "lblPanelDesc";
-            this.lblPanelDesc.Size = new System.Drawing.Size(302, 91);
-            this.lblPanelDesc.TabIndex = 0;
-            this.lblPanelDesc.Text = "lblPanelDesc";
-            this.lblPanelDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 91);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(91, 827);
-            this.panel2.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.lblTimeStateRunning);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(203, 91);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(99, 827);
-            this.panel3.TabIndex = 2;
-            // 
-            // lblTimeStateRunning
-            // 
-            this.lblTimeStateRunning.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblTimeStateRunning.Location = new System.Drawing.Point(0, 801);
-            this.lblTimeStateRunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTimeStateRunning.Name = "lblTimeStateRunning";
-            this.lblTimeStateRunning.Size = new System.Drawing.Size(99, 26);
-            this.lblTimeStateRunning.TabIndex = 4;
-            this.lblTimeStateRunning.Text = "label2";
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Teal;
-            this.panel4.Controls.Add(this.lblStatusTower);
-            this.panel4.Controls.Add(this.lblState);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(91, 795);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(112, 123);
-            this.panel4.TabIndex = 3;
-            // 
-            // lblStatusTower
-            // 
-            this.lblStatusTower.AutoSize = true;
-            this.lblStatusTower.Location = new System.Drawing.Point(22, 95);
-            this.lblStatusTower.Name = "lblStatusTower";
-            this.lblStatusTower.Size = new System.Drawing.Size(44, 16);
-            this.lblStatusTower.TabIndex = 1;
-            this.lblStatusTower.Text = "label1";
-            this.lblStatusTower.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // lblState
-            // 
-            this.lblState.BackColor = System.Drawing.Color.Teal;
-            this.lblState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblState.ForeColor = System.Drawing.Color.White;
-            this.lblState.Location = new System.Drawing.Point(0, 0);
-            this.lblState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(112, 123);
-            this.lblState.TabIndex = 0;
-            this.lblState.Text = "label1";
-            this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPanelDesc.Size = new System.Drawing.Size(0, 0);
+            this.lblPanelDesc.TabIndex = 1;
+            this.lblPanelDesc.Visible = false;
             // 
             // tablePanelView
             // 
-            this.tablePanelView.ColumnCount = 2;
-            this.tablePanelView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tablePanelView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tablePanelView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tablePanelView.ColumnCount = 1;
+            this.tablePanelView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tablePanelView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablePanelView.Location = new System.Drawing.Point(91, 91);
-            this.tablePanelView.Margin = new System.Windows.Forms.Padding(4);
+            this.tablePanelView.Location = new System.Drawing.Point(0, 32);
+            this.tablePanelView.Margin = new System.Windows.Forms.Padding(0);
             this.tablePanelView.Name = "tablePanelView";
-            this.tablePanelView.RowCount = 2;
-            this.tablePanelView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tablePanelView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tablePanelView.Size = new System.Drawing.Size(112, 704);
-            this.tablePanelView.TabIndex = 4;
-            this.tablePanelView.Paint += new System.Windows.Forms.PaintEventHandler(this.tablePanelView_Paint);
+            this.tablePanelView.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tablePanelView.RowCount = 1;
+            this.tablePanelView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tablePanelView.Size = new System.Drawing.Size(135, 668);
+            this.tablePanelView.TabIndex = 1;
+            // 
+            // pnlFooter
+            // 
+            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.pnlFooter.Controls.Add(this.lblStatusTower);
+            this.pnlFooter.Controls.Add(this.lblState);
+            this.pnlFooter.Controls.Add(this.lblTimeStateRunning);
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlFooter.Location = new System.Drawing.Point(0, 700);
+            this.pnlFooter.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(135, 20);
+            this.pnlFooter.TabIndex = 2;
+            // 
+            // lblStatusTower
+            // 
+            this.lblStatusTower.Location = new System.Drawing.Point(0, 0);
+            this.lblStatusTower.Name = "lblStatusTower";
+            this.lblStatusTower.Size = new System.Drawing.Size(0, 0);
+            this.lblStatusTower.TabIndex = 2;
+            this.lblStatusTower.Visible = false;
+            // 
+            // lblState
+            // 
+            this.lblState.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblState.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.ForeColor = System.Drawing.Color.DimGray;
+            this.lblState.Location = new System.Drawing.Point(0, 0);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(135, 20);
+            this.lblState.TabIndex = 0;
+            this.lblState.Text = "ONLINE";
+            this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTimeStateRunning
+            // 
+            this.lblTimeStateRunning.Location = new System.Drawing.Point(0, 0);
+            this.lblTimeStateRunning.Name = "lblTimeStateRunning";
+            this.lblTimeStateRunning.Size = new System.Drawing.Size(0, 0);
+            this.lblTimeStateRunning.TabIndex = 1;
+            this.lblTimeStateRunning.Visible = false;
             // 
             // TimerCheckButtonState
             // 
@@ -159,39 +147,36 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 918);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.ClientSize = new System.Drawing.Size(135, 720);
             this.Controls.Add(this.tablePanelView);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Controls.Add(this.pnlFooter);
+            this.Controls.Add(this.pnlHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PanelView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PanelView";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.PanelView_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
-       
-
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Button btnToggleCollapse;
+        private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.TableLayoutPanel tablePanelView;
         private System.Windows.Forms.Timer TimerCheckButtonState;
         private System.Windows.Forms.Label lblPanelDesc;
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.Label lblTimeStateRunning;
         private System.Windows.Forms.Label lblStatusTower;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

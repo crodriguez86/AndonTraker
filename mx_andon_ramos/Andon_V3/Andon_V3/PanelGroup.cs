@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +18,12 @@ namespace Andon_V3
         public PanelGroup()
         {
             InitializeComponent();
+
+            // PANTALLA COMPLETA PARA RASPBERRY PI - Display 7" (720x1280)
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Bounds = Screen.PrimaryScreen.Bounds;
         }
 
         private void PanelGroup_Load(object sender, EventArgs e)
@@ -28,25 +34,6 @@ namespace Andon_V3
                 var config = andonBLL.getAndonConfigByHostname(Dns.GetHostName());
                 if (config != null)
                 {
-                    #region Table config   
-                    var rowCount = 2;
-                    var columnCount = 3;
-
-                    tablePanelGroup.ColumnCount = columnCount;
-                    tablePanelGroup.RowCount = rowCount;
-
-                    tablePanelGroup.ColumnStyles.Clear();
-                    tablePanelGroup.RowStyles.Clear();
-
-                    for (int i = 0; i < columnCount; i++)
-                    {
-                        tablePanelGroup.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / columnCount));
-                    }
-                    for (int i = 0; i < rowCount; i++)
-                    {
-                        tablePanelGroup.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / rowCount));
-                    }
-                    #endregion
                     _idGroup = config.idPanelGroup ?? 0;
                     if (_idGroup != 0)
                     {
@@ -58,6 +45,29 @@ namespace Andon_V3
                         lblLineName.Text = line.name;
                         AndonPanelViewBLL viewBLL = new AndonPanelViewBLL();
                         var list = viewBLL.GetAllByIdGroup(_idGroup);
+
+                        #region Table config dinamico para 720x1280
+                        int totalPanels = list.Count();
+                        int columnCount = (totalPanels <= 3) ? 1 : 2;
+                        int rowCount = (int)Math.Ceiling((double)totalPanels / columnCount);
+                        if (rowCount < 1) rowCount = 1;
+
+                        tablePanelGroup.ColumnCount = columnCount;
+                        tablePanelGroup.RowCount = rowCount;
+
+                        tablePanelGroup.ColumnStyles.Clear();
+                        tablePanelGroup.RowStyles.Clear();
+
+                        for (int i = 0; i < columnCount; i++)
+                        {
+                            tablePanelGroup.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
+                        }
+                        for (int i = 0; i < rowCount; i++)
+                        {
+                            tablePanelGroup.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / rowCount));
+                        }
+                        #endregion
+
                         foreach (var item in list)
                         {
                             Button b = Create_Button(item.PanelName, item.IdPanel);
@@ -81,10 +91,15 @@ namespace Andon_V3
             {
                 Text = textButton,
                 Name = string.Format("btnGroup_{0}", idPanel.ToString()),
-                BackColor = Color.DarkBlue,
-                Font = new Font(this.Font.FontFamily, 20, FontStyle.Bold),
-                ForeColor = Color.White
-        };
+                BackColor = Color.FromArgb(0, 120, 215),
+                Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand,
+                Margin = new Padding(6)
+            };
+            b.FlatAppearance.BorderSize = 2;
+            b.FlatAppearance.BorderColor = Color.White;
             b.Click += Event_Click;
             b.Dock = DockStyle.Fill;
             return b;
@@ -107,16 +122,10 @@ namespace Andon_V3
                         panelView._rowCount = objPanel.PanelRows ?? 0;
                         panelView._columnCount = objPanel.PanelColumns ?? 0;
                         panelView.Owner = this;
-                        var screen = Screen.FromPoint(Cursor.Position);
-                        panelView.StartPosition = FormStartPosition.Manual;
-                        panelView.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - panelView.Width / 2;
-                        panelView.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - panelView.Height / 2;
                         panelView.Show();
                     }
-                    
                 }
             }
-
         }
         private void ShowWarning(string msg)
         {

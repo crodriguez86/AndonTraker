@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,8 +24,89 @@ namespace Andon_V3
 
         private void Configuration_Load(object sender, EventArgs e)
         {
+            ApplyModernTheme();
             loadData();
         }
+
+        private void ApplyModernTheme()
+        {
+            this.BackColor = Color.FromArgb(248, 250, 252);
+            this.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+
+            if (menuStrip1 != null)
+            {
+                menuStrip1.BackColor = Color.FromArgb(15, 23, 42);
+                menuStrip1.ForeColor = Color.White;
+                menuStrip1.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+                foreach (ToolStripMenuItem item in menuStrip1.Items)
+                {
+                    item.ForeColor = Color.White;
+                }
+            }
+
+            if (statusStrip1 != null)
+            {
+                statusStrip1.BackColor = Color.FromArgb(241, 245, 249);
+                statusStrip1.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+                toolStripUserName.ForeColor = Color.FromArgb(30, 41, 59);
+                toolStripLastLogin.ForeColor = Color.FromArgb(100, 116, 139);
+            }
+
+            if (groupBox1 != null)
+            {
+                groupBox1.ForeColor = Color.FromArgb(15, 23, 42);
+                groupBox1.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+            }
+
+            if (button1 != null)
+            {
+                button1.FlatStyle = FlatStyle.Flat;
+                button1.BackColor = Color.FromArgb(37, 99, 235);
+                button1.ForeColor = Color.White;
+                button1.FlatAppearance.BorderSize = 0;
+                button1.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                button1.Cursor = Cursors.Hand;
+            }
+
+            if (btnNew != null)
+            {
+                btnNew.FlatStyle = FlatStyle.Flat;
+                btnNew.BackColor = Color.FromArgb(16, 185, 129);
+                btnNew.ForeColor = Color.White;
+                btnNew.FlatAppearance.BorderSize = 0;
+                btnNew.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                btnNew.Cursor = Cursors.Hand;
+            }
+
+            if (grdMessages != null)
+            {
+                grdMessages.BorderStyle = BorderStyle.None;
+                grdMessages.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                grdMessages.GridColor = Color.FromArgb(226, 232, 240);
+                grdMessages.EnableHeadersVisualStyles = false;
+
+                grdMessages.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 41, 59);
+                grdMessages.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                grdMessages.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+                grdMessages.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                grdMessages.ColumnHeadersHeight = 36;
+
+                grdMessages.DefaultCellStyle.BackColor = Color.White;
+                grdMessages.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
+                grdMessages.DefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+                grdMessages.DefaultCellStyle.SelectionBackColor = Color.FromArgb(219, 234, 254);
+                grdMessages.DefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 58, 138);
+                grdMessages.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
+
+                grdMessages.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+                grdMessages.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(219, 234, 254);
+                grdMessages.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 58, 138);
+
+                grdMessages.RowTemplate.Height = 30;
+                grdMessages.BackgroundColor = Color.White;
+            }
+        }
+
         private void loadData()
         {
             toolStripLastLogin.Text = "Last login date: " + _lastLogin;

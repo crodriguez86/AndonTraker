@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,31 +28,63 @@ namespace Andon_V3
         public bool _towerActive { get; set; }
         private List<AndonPanelButton> _buttonList = new List<AndonPanelButton>();
 
+        private bool _isCollapsed = false;
+        private int _expandedWidth = 135;
+        private int _collapsedWidth = 32;
+
         public PanelView()
         {
             InitializeComponent();
 
-            // OPTIMIZADO PARA 1366x768
+            // BARRA LATERAL ANCLADA A LA DERECHA
+            this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Normal;
-            this.Size = new Size(320, 650); // Tamaño óptimo para 1366x768
-            this.MinimumSize = new Size(280, 500);
-            this.MaximumSize = new Size(400, 768);
+            this.StartPosition = FormStartPosition.Manual;
+            this.TopMost = true;
+            this.ShowInTaskbar = false;
 
-            // Mejorar apariencia
-            this.BackColor = Color.FromArgb(45, 45, 48); // Fondo oscuro moderno
-            this.ForeColor = Color.White;
-            this.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+            this.Width = _expandedWidth;
+            this.Height = workingArea.Height;
+            this.Location = new Point(workingArea.Right - this.Width, workingArea.Top);
+
+            this.BackColor = Color.FromArgb(248, 248, 248);
+            this.ForeColor = Color.Black;
+            this.Font = new Font("Segoe UI", 10, FontStyle.Regular);
 
             // Suscribir al evento Resize
             this.Resize += PanelView_Resize;
+        }
+
+        private void btnToggleCollapse_Click(object sender, EventArgs e)
+        {
+            _isCollapsed = !_isCollapsed;
+            Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+            if (_isCollapsed)
+            {
+                this.Width = _collapsedWidth;
+                this.Location = new Point(workingArea.Right - _collapsedWidth, workingArea.Top);
+                btnToggleCollapse.Text = ">";
+                tablePanelView.Visible = false;
+                pnlFooter.Visible = false;
+            }
+            else
+            {
+                this.Width = _expandedWidth;
+                this.Location = new Point(workingArea.Right - _expandedWidth, workingArea.Top);
+                btnToggleCollapse.Text = "<";
+                tablePanelView.Visible = true;
+                pnlFooter.Visible = true;
+            }
         }
 
         private void PanelView_Load(object sender, EventArgs e)
         {
             try
             {
-                // POSICIONAR EN EL LADO DERECHO DE LA PANTALLA
-                PosicionarEnLadoDerecho();
+                Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+                this.Height = workingArea.Height;
+                this.Location = new Point(workingArea.Right - this.Width, workingArea.Top);
 
                 // Configurar estilos de controles
                 ConfigurarEstilosControles();
@@ -61,12 +93,11 @@ namespace Andon_V3
                 if (objConn.CheckConnection())
                 {
                     _connected = true;
-                    lblState.BackColor = Color.FromArgb(0, 123, 255); // Azul moderno
-                    lblState.ForeColor = Color.White;
+                    lblState.ForeColor = Color.FromArgb(40, 167, 69);
                     lblState.Text = "ONLINE " + DateTime.Now.ToString("HH:mm");
-                    lblState.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                    lblState.Font = new Font("Segoe UI", 7, FontStyle.Regular);
 
-                    #region Table config - OPTIMIZADO PARA 1366x768
+                    #region Table config - Barra Lateral
 
                     tablePanelView.ColumnCount = 1;
                     tablePanelView.RowCount = 0;
@@ -78,9 +109,9 @@ namespace Andon_V3
                     tablePanelView.AutoScroll = false;
                     tablePanelView.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
                     tablePanelView.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
-                    tablePanelView.Padding = new Padding(3);
-                    tablePanelView.Margin = new Padding(2);
-                    tablePanelView.BackColor = Color.FromArgb(37, 37, 38); // Fondo oscuro
+                    tablePanelView.Padding = new Padding(2);
+                    tablePanelView.Margin = new Padding(0);
+                    tablePanelView.BackColor = Color.FromArgb(248, 248, 248);
 
                     #endregion
 
@@ -95,15 +126,13 @@ namespace Andon_V3
                         if (objView != null)
                         {
                             lblPanelDesc.Text = objView.PanelName.ToUpper();
-                            lblPanelDesc.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-                            lblPanelDesc.ForeColor = Color.White;
+                            toolTip1.SetToolTip(btnToggleCollapse, "Panel: " + objView.PanelName);
 
                             var objGroup = groupBLL.GetById(objView.IdGroup ?? 0);
                             if (objGroup != null)
                             {
                                 if (objGroup.GroupTowerActive == true)
                                 {
-                                    lblPanelDesc.Text = objView.PanelName.ToUpper() + " • TOWER: " + objGroup.GroupTowerIp;
                                     _towerIpDefault = objGroup.GroupTowerIp;
                                     _towerClearCmd = objGroup.GroupTowerClearCommand;
                                     _towerActive = true;
@@ -116,7 +145,6 @@ namespace Andon_V3
                                 }
                                 else
                                 {
-                                    lblPanelDesc.Text = objView.PanelName.ToUpper() + " • TOWER INACTIVE";
                                     _towerActive = false;
                                 }
                             }
@@ -152,9 +180,6 @@ namespace Andon_V3
 
                         // Ajustar distribución inicial
                         AjustarDistribucionVertical();
-
-                        // Re-posicionar después de cargar el contenido
-                        PosicionarEnLadoDerecho();
                     }
                     else
                     {
@@ -163,28 +188,23 @@ namespace Andon_V3
                 }
                 else
                 {
-                    lblState.BackColor = Color.FromArgb(220, 53, 69); // Rojo error
-                    lblState.ForeColor = Color.White;
+                    lblState.ForeColor = Color.FromArgb(220, 53, 69);
                     lblState.Text = "OFFLINE " + DateTime.Now.ToString("HH:mm");
-                    lblState.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                    lblState.Font = new Font("Segoe UI", 7, FontStyle.Regular);
                     _connected = false;
                 }
             }
             catch (Exception ex)
             {
-                Application.Restart();
+                MessageBox.Show($"{ex.GetType().Name}\n{ex.Message}\n\n{ex.StackTrace}", "Error real");
             }
         }
+        
 
         private void ConfigurarEstilosControles()
         {
-            // Estilo para lblTimeStateRunning
-            lblTimeStateRunning.Font = new Font("Segoe UI", 8, FontStyle.Regular);
-            lblTimeStateRunning.ForeColor = Color.LightGray;
-
-            // Estilo para lblStatusTower
-           // lblStatusTower.Font = new Font("Segoe UI", 8, FontStyle.Regular);
-            //lblStatusTower.ForeColor = Color.LightGray;
+            lblTimeStateRunning.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            lblTimeStateRunning.ForeColor = Color.Gray;
         }
 
         private void ConfigurarFilasTableLayout()
@@ -195,7 +215,7 @@ namespace Andon_V3
             tablePanelView.RowCount = _buttonList.Count;
             tablePanelView.RowStyles.Clear();
 
-            // Configurar todas las filas con el mismo tamaño
+            // Distribuir equitativamente el 100% de la altura entre todos los botones
             for (int i = 0; i < _buttonList.Count; i++)
             {
                 tablePanelView.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / _buttonList.Count));
@@ -207,51 +227,32 @@ namespace Andon_V3
             if (_buttonList == null || _buttonList.Count == 0)
                 return;
 
-            // Calcular altura disponible para botones (considerando otros controles)
-            int alturaDisponible = this.ClientSize.Height - tablePanelView.Top - 80;
-
-            if (alturaDisponible > 0 && _buttonList.Count > 0)
+            tablePanelView.RowCount = _buttonList.Count;
+            tablePanelView.RowStyles.Clear();
+            for (int i = 0; i < _buttonList.Count; i++)
             {
-                // Calcular altura por botón con límites razonables
-                int alturaPorBoton = alturaDisponible / _buttonList.Count;
-                alturaPorBoton = Math.Max(55, Math.Min(85, alturaPorBoton)); // Rango óptimo para 1366x768
-
-                // Actualizar los estilos de fila
-                tablePanelView.RowStyles.Clear();
-                for (int i = 0; i < _buttonList.Count; i++)
-                {
-                    tablePanelView.RowStyles.Add(new RowStyle(SizeType.Absolute, alturaPorBoton));
-                }
-
-                // Forzar actualización del layout
-                tablePanelView.PerformLayout();
+                tablePanelView.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / _buttonList.Count));
             }
-        }
 
-        // MÉTODO PARA POSICIONAR EN EL LADO DERECHO - OPTIMIZADO PARA 1366x768
-        private void PosicionarEnLadoDerecho()
-        {
-            Screen screen = Screen.PrimaryScreen;
-            Rectangle workingArea = screen.WorkingArea;
-
-            // Para 1366x768, posicionar en el lado derecho con margen
-            int posX = workingArea.Right - this.Width - 5; // Pequeño margen del borde
-            int posY = workingArea.Top + (workingArea.Height - this.Height) / 2;
-
-            this.Location = new Point(posX, posY);
+            tablePanelView.PerformLayout();
         }
 
         Button Create_Button(AndonPanelButton obj)
         {
+            string buttonText = obj.NameType;
+            if (!string.IsNullOrEmpty(obj.ButtonName))
+            {
+                buttonText += "\n" + obj.ButtonName;
+            }
+
             var b = new Button
             {
-                Text = obj.NameType + "\n" + obj.ButtonName,
+                Text = buttonText,
                 Name = string.Format("btnView_{0}", obj.IdButton.ToString()),
                 BackColor = Color.FromName(obj.BgName),
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                Font = new Font("Segoe UI", 9.5f, FontStyle.Bold),
                 ForeColor = Color.FromName(obj.TxName),
-                Height = 70, // Altura óptima para 1366x768
-                Margin = new Padding(2, 4, 2, 4),
+                Margin = new Padding(2, 2, 2, 2),
                 Padding = new Padding(1),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill,
@@ -260,10 +261,13 @@ namespace Andon_V3
                 Cursor = Cursors.Hand
             };
 
-            // Mejorar apariencia del botón
-            b.FlatAppearance.BorderColor = Color.FromArgb(80, 80, 80);
+            // Mejorar apariencia del botón para barra lateral
+            b.FlatAppearance.BorderSize = 1;
+            b.FlatAppearance.BorderColor = Color.FromArgb(200, 200, 200);
             b.FlatAppearance.MouseOverBackColor = ControlPaint.Light(Color.FromName(obj.BgName));
             b.FlatAppearance.MouseDownBackColor = ControlPaint.Dark(Color.FromName(obj.BgName));
+
+            toolTip1.SetToolTip(b, obj.NameType + (!string.IsNullOrEmpty(obj.ButtonName) ? " - " + obj.ButtonName : ""));
 
             b.Click += Event_Click;
             return b;
@@ -279,16 +283,23 @@ namespace Andon_V3
         private void AjustarFuenteSegunAncho()
         {
             int anchoActual = this.Width;
-            float tamañoFuente = 9f; // Tamaño base óptimo para 1366x768
+            float tamañoFuente = 9.5f;
 
-            // Ajuste fino para diferentes anchos
-            if (anchoActual < 300)
+            if (anchoActual < 80)
             {
-                tamañoFuente = 8f;
+                tamañoFuente = 7.5f;
             }
-            else if (anchoActual > 350)
+            else if (anchoActual < 120)
             {
-                tamañoFuente = 10f;
+                tamañoFuente = 8.5f;
+            }
+            else if (anchoActual < 160)
+            {
+                tamañoFuente = 9.5f;
+            }
+            else
+            {
+                tamañoFuente = 11f;
             }
 
             // Aplicar el tamaño de fuente a todos los botones
