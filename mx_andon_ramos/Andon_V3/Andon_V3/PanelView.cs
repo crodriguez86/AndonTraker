@@ -67,6 +67,7 @@ namespace Andon_V3
                 btnToggleCollapse.Text = ">";
                 tablePanelView.Visible = false;
                 pnlFooter.Visible = false;
+                btnClose.Visible = false;
             }
             else
             {
@@ -75,7 +76,13 @@ namespace Andon_V3
                 btnToggleCollapse.Text = "<";
                 tablePanelView.Visible = true;
                 pnlFooter.Visible = true;
+                btnClose.Visible = true;
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void PanelView_Load(object sender, EventArgs e)
@@ -115,6 +122,21 @@ namespace Andon_V3
 
                     #endregion
 
+                    if (_idPanel == 0)
+                    {
+                        AndonBLL aBll = new AndonBLL();
+                        var cfg = aBll.getAndonConfigByHostname(Dns.GetHostName());
+                        if (cfg != null && cfg.idPanelGroup.HasValue)
+                        {
+                            AndonPanelViewBLL pViewBLL = new AndonPanelViewBLL();
+                            var panels = pViewBLL.GetAllByIdGroup(cfg.idPanelGroup.Value);
+                            if (panels != null && panels.Count > 0)
+                            {
+                                _idPanel = panels.First().IdPanel;
+                            }
+                        }
+                    }
+
                     if (_idPanel != 0)
                     {
                         AndonPanelButtonBLL viewBLL = new AndonPanelButtonBLL();
@@ -127,6 +149,7 @@ namespace Andon_V3
                         {
                             lblPanelDesc.Text = objView.PanelName.ToUpper();
                             toolTip1.SetToolTip(btnToggleCollapse, "Panel: " + objView.PanelName);
+                            toolTip1.SetToolTip(btnClose, "Cerrar barra lateral / Volver a grupos");
 
                             var objGroup = groupBLL.GetById(objView.IdGroup ?? 0);
                             if (objGroup != null)
@@ -334,6 +357,7 @@ namespace Andon_V3
                                 if (objButton.IsBinary == true)
                                 {
                                     buttonBLL.UpdateState(idButton, false);
+                                    _arrayIdButtonActive.RemoveAll(x => x.Key == idButton);
                                     b.BackColor = Color.FromName(objButton.BgName);
                                     b.ForeColor = Color.FromName(objButton.TxName);
                                     var value = valueBLL.getAndonValues(new AndonValues { idAv = objButton.IdTag.Value });
@@ -357,14 +381,16 @@ namespace Andon_V3
                                         key._idMsg = objButton.IdMsg ?? 0;
                                         key._title = "END RESPONSE TIME";
                                         key._operator = false;
+                                        key.TopMost = true;
                                         key.FormClosed += new FormClosedEventHandler(KedPad_Closed);
                                         var screen = Screen.FromPoint(Cursor.Position);
                                         key.StartPosition = FormStartPosition.Manual;
                                         key.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - key.Width / 2;
                                         key.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - key.Height / 2;
-                                        key.ShowDialog();
+                                        key.ShowDialog(this);
 
                                         buttonBLL.UpdateState(idButton, false);
+                                        _arrayIdButtonActive.RemoveAll(x => x.Key == idButton);
                                         b.BackColor = Color.FromName(objButton.BgName);
                                         b.ForeColor = Color.FromName(objButton.TxName);
                                         if (objButton.ButtonTowerConfig == 2 || objButton.ButtonTowerConfig == 3)
@@ -377,12 +403,13 @@ namespace Andon_V3
                                         keyOp._title = "END REPAIR TIME";
                                         keyOp._operator = true;
                                         keyOp._timeToWait = 20;
+                                        keyOp.TopMost = true;
                                         keyOp.FormClosed += new FormClosedEventHandler(KedPad_Closed);
                                         var screenOP = Screen.FromPoint(Cursor.Position);
                                         keyOp.StartPosition = FormStartPosition.Manual;
                                         keyOp.Left = screenOP.Bounds.Left + screenOP.Bounds.Width / 2 - keyOp.Width / 2;
                                         keyOp.Top = screenOP.Bounds.Top + screenOP.Bounds.Height / 2 - keyOp.Height / 2;
-                                        keyOp.ShowDialog();
+                                        keyOp.ShowDialog(this);
                                         andonBLL.setAndonValue(objButton.IdTag ?? 0, 9999);
                                         Thread.Sleep(1500);
                                         andonBLL.setAndonValue(objButton.IdTag ?? 0, -1);
@@ -390,6 +417,7 @@ namespace Andon_V3
                                     else
                                     {
                                         buttonBLL.UpdateState(idButton, false);
+                                        _arrayIdButtonActive.RemoveAll(x => x.Key == idButton);
                                         b.BackColor = Color.FromName(objButton.BgName);
                                         b.ForeColor = Color.FromName(objButton.TxName);
                                         if (objButton.ButtonTowerConfig == 2 || objButton.ButtonTowerConfig == 3)
@@ -406,8 +434,11 @@ namespace Andon_V3
                                 b.ForeColor = Color.White;
                                 if (objButton.IsBinary == false)
                                 {
-                                    var newEntry = new KeyValuePair<int, int>(idButton, 0);
-                                    _arrayIdButtonActive.Add(newEntry);
+                                    if (!_arrayIdButtonActive.Any(x => x.Key == idButton))
+                                    {
+                                        var newEntry = new KeyValuePair<int, int>(idButton, 0);
+                                        _arrayIdButtonActive.Add(newEntry);
+                                    }
                                 }
                                 else if (objButton.IsBinary == true)
                                 {
@@ -493,7 +524,7 @@ namespace Andon_V3
                     var listUpdate = new List<KeyValuePair<int, int>>();
                     AndonPanelButtonBLL buttonBLL = new AndonPanelButtonBLL();
                     AndonBLL andonBLL = new AndonBLL();
-                    foreach (var item in _arrayIdButtonActive)
+                    foreach (var item in _arrayIdButtonActive.ToList())
                     {
                         if (item.Value == 0)
                         {
@@ -545,18 +576,21 @@ namespace Andon_V3
                     }
                     foreach (var item in listUpdate)
                     {
-                        _arrayIdButtonActive.Remove(_arrayIdButtonActive.First(x => x.Key.Equals(item.Key)));
+                        _arrayIdButtonActive.RemoveAll(x => x.Key == item.Key);
                         _arrayIdButtonActive.Add(item);
                     }
                     if (allSet)
                     {
                         _arrayIdButtonActive.Clear();
                         var listActiveButtons = buttonBLL.GetAllActiveButtons(_idPanel);
-                        foreach (var item in listActiveButtons)
+                        if (listActiveButtons != null)
                         {
-                            if (item.IsBinary == false)
+                            foreach (var item in listActiveButtons)
                             {
-                                _arrayIdButtonActive.Add(new KeyValuePair<int, int>(item.IdButton, 0));
+                                if (item.IsBinary == false)
+                                {
+                                    _arrayIdButtonActive.Add(new KeyValuePair<int, int>(item.IdButton, 0));
+                                }
                             }
                         }
                         if (_towerActive)
@@ -585,7 +619,10 @@ namespace Andon_V3
             }
             catch (Exception ex)
             {
-                Application.Restart();
+                MreaShared.HandleException.MreaException(ex);
+                lblState.BackColor = Color.FromArgb(220, 53, 69);
+                lblState.Text = "OFFLINE " + DateTime.Now.ToString("HH:mm");
+                _connected = false;
             }
         }
 

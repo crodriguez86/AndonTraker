@@ -15,6 +15,7 @@ namespace Andon_V3
     public partial class PanelGroup : Form
     {
         public int _idGroup { get; set; }
+        private bool _hasAutoLaunched = false;
         public PanelGroup()
         {
             InitializeComponent();
@@ -104,6 +105,38 @@ namespace Andon_V3
             b.Dock = DockStyle.Fill;
             return b;
         } 
+        private void PanelGroup_Shown(object sender, EventArgs e)
+        {
+            if (!_hasAutoLaunched && _idGroup != 0)
+            {
+                AndonPanelViewBLL viewBLL = new AndonPanelViewBLL();
+                var list = viewBLL.GetAllByIdGroup(_idGroup);
+                if (list != null && list.Count == 1)
+                {
+                    _hasAutoLaunched = true;
+                    var item = list.First();
+                    OpenPanelView(item.IdPanel, item.PanelRows ?? 0, item.PanelColumns ?? 0);
+                }
+            }
+        }
+
+        private void OpenPanelView(int idPanel, int rows, int columns)
+        {
+            var panelView = new PanelView();
+            panelView._idPanel = idPanel;
+            panelView._rowCount = rows;
+            panelView._columnCount = columns;
+            // Ventana completamente independiente: no asignar Owner
+            panelView.FormClosed += (s, args) =>
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Maximized;
+                this.BringToFront();
+            };
+            this.Hide();
+            panelView.Show();
+        }
+
         void Event_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
@@ -117,12 +150,7 @@ namespace Andon_V3
                     var objPanel = viewBLL.GetById(idPanel);
                     if (objPanel != null)
                     {
-                        var panelView = new PanelView();
-                        panelView._idPanel = idPanel;
-                        panelView._rowCount = objPanel.PanelRows ?? 0;
-                        panelView._columnCount = objPanel.PanelColumns ?? 0;
-                        panelView.Owner = this;
-                        panelView.Show();
+                        OpenPanelView(idPanel, objPanel.PanelRows ?? 0, objPanel.PanelColumns ?? 0);
                     }
                 }
             }

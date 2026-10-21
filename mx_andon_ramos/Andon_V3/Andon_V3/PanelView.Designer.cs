@@ -31,6 +31,7 @@ namespace Andon_V3
             this.components = new System.ComponentModel.Container();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.btnToggleCollapse = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lblPanelDesc = new System.Windows.Forms.Label();
             this.tablePanelView = new System.Windows.Forms.TableLayoutPanel();
             this.pnlFooter = new System.Windows.Forms.Panel();
@@ -47,6 +48,7 @@ namespace Andon_V3
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.pnlHeader.Controls.Add(this.btnToggleCollapse);
+            this.pnlHeader.Controls.Add(this.btnClose);
             this.pnlHeader.Controls.Add(this.lblPanelDesc);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
@@ -67,11 +69,29 @@ namespace Andon_V3
             this.btnToggleCollapse.Location = new System.Drawing.Point(0, 0);
             this.btnToggleCollapse.Margin = new System.Windows.Forms.Padding(0);
             this.btnToggleCollapse.Name = "btnToggleCollapse";
-            this.btnToggleCollapse.Size = new System.Drawing.Size(135, 32);
+            this.btnToggleCollapse.Size = new System.Drawing.Size(103, 32);
             this.btnToggleCollapse.TabIndex = 0;
             this.btnToggleCollapse.Text = "<";
             this.btnToggleCollapse.UseVisualStyleBackColor = false;
             this.btnToggleCollapse.Click += new System.EventHandler(this.btnToggleCollapse_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.White;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
+            this.btnClose.Location = new System.Drawing.Point(103, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(32, 32);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "✕";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblPanelDesc
             // 
@@ -170,6 +190,7 @@ namespace Andon_V3
 
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Button btnToggleCollapse;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.TableLayoutPanel tablePanelView;
         private System.Windows.Forms.Timer TimerCheckButtonState;

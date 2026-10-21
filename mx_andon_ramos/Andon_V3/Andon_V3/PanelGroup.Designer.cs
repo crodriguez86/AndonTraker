@@ -162,6 +162,7 @@ namespace Andon_V3
             this.Text = "PanelGroup";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PanelGroup_Load);
+            this.Shown += new System.EventHandler(this.PanelGroup_Shown);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
